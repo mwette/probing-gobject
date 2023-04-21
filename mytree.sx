@@ -1,0 +1,3521 @@
+(trans-unit
+  (cpp-stmt (include "<glib-object.h>"))
+  (cpp-stmt (include "\"my-rect.h\""))
+  (cpp-stmt (include "\"my-print.h\""))
+  (cpp-stmt (include "\"my-serial.h\""))
+  (decl (decl-spec-list (type-spec (fixed-type "int")))
+        (init-declr-list (init-declr (ident "demo"))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_print_default_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MyPrintInterface")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "klass")))))))))
+  (fctn-defn
+    (decl-spec-list (type-spec (typename "GType")))
+    (ftn-declr
+      (ident "my_print_get_type")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (void)))
+          (param-declr))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (stor-spec (static))
+                (type-spec (typename "gsize")))
+              (init-declr-list
+                (init-declr
+                  (ident "static_g_define_type_id")
+                  (initzer (p-expr (fixed "0"))))))
+        (if (stmt-expr
+              (@ (extension "GNUC"))
+              (block-item-list
+                (expr-stmt
+                  (fctn-call
+                    (p-expr (ident "_Static_assert"))
+                    (expr-list
+                      (eq (sizeof-expr
+                            (de-ref
+                              (ref-to
+                                (p-expr (ident "static_g_define_type_id")))))
+                          (sizeof-type
+                            (type-name
+                              (decl-spec-list
+                                (type-spec (typename "gpointer"))))))
+                      (p-expr (string "Expression evaluates to false")))))
+                (expr-stmt
+                  (cast (type-name (decl-spec-list (type-spec (void))))
+                        (cond-expr
+                          (p-expr (fixed "0"))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gpointer"))))
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id")))))
+                          (cast (type-name
+                                  (decl-spec-list (type-spec (void)))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (fixed "0"))))))
+                (expr-stmt
+                  (and (not (stmt-expr
+                              (@ (extension "GNUC"))
+                              (block-item-list
+                                (expr-stmt
+                                  (fctn-call
+                                    (p-expr (ident "_Static_assert"))
+                                    (expr-list
+                                      (eq (sizeof-expr
+                                            (de-ref
+                                              (ref-to
+                                                (p-expr
+                                                  (ident "static_g_define_type_id")))))
+                                          (sizeof-type
+                                            (type-name
+                                              (decl-spec-list
+                                                (type-spec
+                                                  (typename "gpointer"))))))
+                                      (p-expr
+                                        (string
+                                          "Expression evaluates to false")))))
+                                (decl (decl-spec-list
+                                        (typeof-expr
+                                          (de-ref
+                                            (ref-to
+                                              (p-expr
+                                                (ident "static_g_define_type_id"))))))
+                                      (init-declr-list
+                                        (init-declr
+                                          (ident "gapg_temp_newval"))))
+                                (decl (decl-spec-list
+                                        (typeof-expr
+                                          (ref-to
+                                            (p-expr
+                                              (ident "static_g_define_type_id")))))
+                                      (init-declr-list
+                                        (init-declr
+                                          (ident "gapg_temp_atomic")
+                                          (initzer
+                                            (ref-to
+                                              (p-expr
+                                                (ident "static_g_define_type_id")))))))
+                                (expr-stmt
+                                  (fctn-call
+                                    (p-expr (ident "__atomic_load"))
+                                    (expr-list
+                                      (p-expr (ident "gapg_temp_atomic"))
+                                      (ref-to
+                                        (p-expr (ident "gapg_temp_newval")))
+                                      (p-expr (fixed "5")))))
+                                (expr-stmt
+                                  (p-expr (ident "gapg_temp_newval"))))))
+                       (fctn-call
+                         (p-expr (ident "g_once_init_enter"))
+                         (expr-list
+                           (ref-to
+                             (p-expr (ident "static_g_define_type_id")))))))))
+          (compd-stmt
+            (block-item-list
+              (decl (decl-spec-list (type-spec (typename "GType")))
+                    (init-declr-list
+                      (init-declr
+                        (ident "g_define_type_id")
+                        (initzer
+                          (fctn-call
+                            (p-expr (ident "g_type_register_static_simple"))
+                            (expr-list
+                              (cast (type-name
+                                      (decl-spec-list
+                                        (type-spec (typename "GType"))))
+                                    (lshift
+                                      (p-expr (fixed "2"))
+                                      (p-expr (fixed "2"))))
+                              (fctn-call
+                                (p-expr (ident "g_intern_static_string"))
+                                (expr-list (p-expr (string "MyPrint"))))
+                              (sizeof-type
+                                (type-name
+                                  (decl-spec-list
+                                    (type-spec
+                                      (typename "MyPrintInterface")))))
+                              (cast (type-name
+                                      (decl-spec-list
+                                        (type-spec
+                                          (typename "GClassInitFunc"))))
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (ftn-declr
+                                              (abs-ptr-declr (pointer))
+                                              (param-list
+                                                (param-decl
+                                                  (decl-spec-list
+                                                    (type-spec (void)))
+                                                  (param-declr)))))
+                                          (p-expr
+                                            (ident "my_print_default_init"))))
+                              (p-expr (fixed "0"))
+                              (cast (type-name
+                                      (decl-spec-list
+                                        (type-spec
+                                          (typename "GInstanceInitFunc"))))
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0"))))
+                              (cast (type-name
+                                      (decl-spec-list
+                                        (type-spec (typename "GTypeFlags"))))
+                                    (p-expr (fixed "0")))))))))
+              (if (ne (cast (type-name
+                              (decl-spec-list (type-spec (typename "GType"))))
+                            (lshift
+                              (p-expr (fixed "20"))
+                              (p-expr (fixed "2"))))
+                      (cast (type-name
+                              (decl-spec-list (type-spec (typename "GType"))))
+                            (lshift
+                              (p-expr (fixed "0"))
+                              (p-expr (fixed "2")))))
+                (expr-stmt
+                  (fctn-call
+                    (p-expr
+                      (ident "g_type_interface_add_prerequisite"))
+                    (expr-list
+                      (p-expr (ident "g_define_type_id"))
+                      (cast (type-name
+                              (decl-spec-list (type-spec (typename "GType"))))
+                            (lshift
+                              (p-expr (fixed "20"))
+                              (p-expr (fixed "2"))))))))
+              (compd-stmt
+                (block-item-list
+                  (compd-stmt
+                    (block-item-list (expr-stmt) (expr-stmt)))))
+              (expr-stmt
+                (stmt-expr
+                  (@ (extension "GNUC"))
+                  (block-item-list
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "_Static_assert"))
+                        (expr-list
+                          (eq (sizeof-expr
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id")))))
+                              (sizeof-type
+                                (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gpointer"))))))
+                          (p-expr (string "Expression evaluates to false")))))
+                    (expr-stmt
+                      (cond-expr
+                        (p-expr (fixed "0"))
+                        (cast (type-name (decl-spec-list (type-spec (void))))
+                              (assn-expr
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id"))))
+                                (op "=")
+                                (p-expr (ident "g_define_type_id"))))
+                        (cast (type-name (decl-spec-list (type-spec (void))))
+                              (p-expr (fixed "0")))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_once_init_leave"))
+                        (expr-list
+                          (ref-to
+                            (p-expr (ident "static_g_define_type_id")))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gsize"))))
+                                (p-expr (ident "g_define_type_id"))))))))))))
+        (return
+          (p-expr (ident "static_g_define_type_id"))))))
+  (decl (@ (extension "GNUC")))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_print_default_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyPrintInterface")))
+          (param-declr
+            (ptr-declr (pointer) (ident "iface"))))))
+    (compd-stmt (block-item-list)))
+  (fctn-defn
+    (decl-spec-list (type-spec (void)))
+    (ftn-declr
+      (ident "my_print_fprint")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyPrint")))
+          (param-declr
+            (ptr-declr (pointer) (ident "self"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "char")))
+          (param-declr
+            (ptr-declr (pointer) (ident "name"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyPrintInterface")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "iface")))))
+        (do-while
+          (compd-stmt
+            (block-item-list
+              (if (fctn-call
+                    (p-expr (ident "MY_IS_PRINT"))
+                    (expr-list (p-expr (ident "self"))))
+                (compd-stmt (block-item-list))
+                (compd-stmt
+                  (block-item-list
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_return_if_fail_warning"))
+                        (expr-list
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gchar")))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (fixed "0")))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-qual (const))
+                                    (type-spec (fixed-type "char")))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (ident "__func__")))
+                          (p-expr (string "MY_IS_PRINT (self)")))))
+                    (return (expr)))))))
+          (p-expr (fixed "0")))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "in my_print_fprint\n")))))
+        (expr-stmt
+          (assn-expr
+            (p-expr (ident "iface"))
+            (op "=")
+            (fctn-call
+              (p-expr (ident "MY_PRINT_GET_IFACE"))
+              (expr-list (p-expr (ident "self"))))))
+        (expr-stmt
+          (fctn-call
+            (i-sel (ident "fprint") (p-expr (ident "iface")))
+            (expr-list
+              (p-expr (ident "self"))
+              (p-expr (ident "name"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_print_interface_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyPrintInterface")))
+          (param-declr
+            (ptr-declr (pointer) (ident "iface"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "fprint") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "my_print_fprint")))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_print_init")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyPrint")))
+          (param-declr
+            (ptr-declr (pointer) (ident "self"))))))
+    (compd-stmt (block-item-list)))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_serial_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MySerialInterface")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "iface")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_print_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MyPrintInterface")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "iface")))))))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec
+            (struct-def
+              (field-list
+                (comp-decl
+                  (decl-spec-list (type-spec (fixed-type "int")))
+                  (comp-declr-list (comp-declr (ident "width"))))
+                (comp-decl
+                  (decl-spec-list (type-spec (fixed-type "int")))
+                  (comp-declr-list (comp-declr (ident "height"))))
+                (comp-decl
+                  (decl-spec-list (type-spec (fixed-type "char")))
+                  (comp-declr-list
+                    (comp-declr (ptr-declr (pointer) (ident "name")))))))))
+        (init-declr-list
+          (init-declr (ident "MyRectPrivate"))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (typename "MyRect")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "self")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_class_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MyRectClass")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "klass")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "GType")))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_get_type_once")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (void)))
+                  (param-declr)))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "gpointer")))
+        (init-declr-list
+          (init-declr
+            (ident "my_rect_parent_class")
+            (initzer
+              (cast (type-name
+                      (decl-spec-list (type-spec (void)))
+                      (abs-ptr-declr (pointer)))
+                    (p-expr (fixed "0")))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "gint")))
+        (init-declr-list
+          (init-declr (ident "MyRect_private_offset"))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_class_intern_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "gpointer")))
+          (param-declr (ident "klass")))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (p-expr (ident "my_rect_parent_class"))
+            (op "=")
+            (fctn-call
+              (p-expr (ident "g_type_class_peek_parent"))
+              (expr-list (p-expr (ident "klass"))))))
+        (if (ne (p-expr (ident "MyRect_private_offset"))
+                (p-expr (fixed "0")))
+          (expr-stmt
+            (fctn-call
+              (p-expr
+                (ident "g_type_class_adjust_private_offset"))
+              (expr-list
+                (p-expr (ident "klass"))
+                (ref-to (p-expr (ident "MyRect_private_offset")))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "my_rect_class_init"))
+            (expr-list
+              (cast (type-name
+                      (decl-spec-list
+                        (type-spec (typename "MyRectClass")))
+                      (abs-ptr-declr (pointer)))
+                    (p-expr (ident "klass")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "gpointer")))
+    (ftn-declr
+      (ident "my_rect_get_instance_private")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyRect")))
+          (param-declr
+            (ptr-declr (pointer) (ident "self"))))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (cast (type-name
+                  (decl-spec-list
+                    (type-spec (typename "gpointer"))))
+                (add (cast (type-name
+                             (decl-spec-list (type-spec (typename "guint8")))
+                             (abs-ptr-declr (pointer)))
+                           (p-expr (ident "self")))
+                     (cast (type-name
+                             (decl-spec-list (type-spec (typename "glong"))))
+                           (p-expr (ident "MyRect_private_offset")))))))))
+  (fctn-defn
+    (decl-spec-list (type-spec (typename "GType")))
+    (ftn-declr
+      (ident "my_rect_get_type")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (void)))
+          (param-declr))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (stor-spec (static))
+                (type-spec (typename "gsize")))
+              (init-declr-list
+                (init-declr
+                  (ident "static_g_define_type_id")
+                  (initzer (p-expr (fixed "0"))))))
+        (if (stmt-expr
+              (@ (extension "GNUC"))
+              (block-item-list
+                (expr-stmt
+                  (fctn-call
+                    (p-expr (ident "_Static_assert"))
+                    (expr-list
+                      (eq (sizeof-expr
+                            (de-ref
+                              (ref-to
+                                (p-expr (ident "static_g_define_type_id")))))
+                          (sizeof-type
+                            (type-name
+                              (decl-spec-list
+                                (type-spec (typename "gpointer"))))))
+                      (p-expr (string "Expression evaluates to false")))))
+                (expr-stmt
+                  (cast (type-name (decl-spec-list (type-spec (void))))
+                        (cond-expr
+                          (p-expr (fixed "0"))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gpointer"))))
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id")))))
+                          (cast (type-name
+                                  (decl-spec-list (type-spec (void)))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (fixed "0"))))))
+                (expr-stmt
+                  (and (not (stmt-expr
+                              (@ (extension "GNUC"))
+                              (block-item-list
+                                (expr-stmt
+                                  (fctn-call
+                                    (p-expr (ident "_Static_assert"))
+                                    (expr-list
+                                      (eq (sizeof-expr
+                                            (de-ref
+                                              (ref-to
+                                                (p-expr
+                                                  (ident "static_g_define_type_id")))))
+                                          (sizeof-type
+                                            (type-name
+                                              (decl-spec-list
+                                                (type-spec
+                                                  (typename "gpointer"))))))
+                                      (p-expr
+                                        (string
+                                          "Expression evaluates to false")))))
+                                (decl (decl-spec-list
+                                        (typeof-expr
+                                          (de-ref
+                                            (ref-to
+                                              (p-expr
+                                                (ident "static_g_define_type_id"))))))
+                                      (init-declr-list
+                                        (init-declr
+                                          (ident "gapg_temp_newval"))))
+                                (decl (decl-spec-list
+                                        (typeof-expr
+                                          (ref-to
+                                            (p-expr
+                                              (ident "static_g_define_type_id")))))
+                                      (init-declr-list
+                                        (init-declr
+                                          (ident "gapg_temp_atomic")
+                                          (initzer
+                                            (ref-to
+                                              (p-expr
+                                                (ident "static_g_define_type_id")))))))
+                                (expr-stmt
+                                  (fctn-call
+                                    (p-expr (ident "__atomic_load"))
+                                    (expr-list
+                                      (p-expr (ident "gapg_temp_atomic"))
+                                      (ref-to
+                                        (p-expr (ident "gapg_temp_newval")))
+                                      (p-expr (fixed "5")))))
+                                (expr-stmt
+                                  (p-expr (ident "gapg_temp_newval"))))))
+                       (fctn-call
+                         (p-expr (ident "g_once_init_enter"))
+                         (expr-list
+                           (ref-to
+                             (p-expr (ident "static_g_define_type_id")))))))))
+          (compd-stmt
+            (block-item-list
+              (decl (decl-spec-list (type-spec (typename "GType")))
+                    (init-declr-list
+                      (init-declr
+                        (ident "g_define_type_id")
+                        (initzer
+                          (fctn-call
+                            (p-expr (ident "my_rect_get_type_once"))
+                            (expr-list))))))
+              (expr-stmt
+                (stmt-expr
+                  (@ (extension "GNUC"))
+                  (block-item-list
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "_Static_assert"))
+                        (expr-list
+                          (eq (sizeof-expr
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id")))))
+                              (sizeof-type
+                                (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gpointer"))))))
+                          (p-expr (string "Expression evaluates to false")))))
+                    (expr-stmt
+                      (cond-expr
+                        (p-expr (fixed "0"))
+                        (cast (type-name (decl-spec-list (type-spec (void))))
+                              (assn-expr
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id"))))
+                                (op "=")
+                                (p-expr (ident "g_define_type_id"))))
+                        (cast (type-name (decl-spec-list (type-spec (void))))
+                              (p-expr (fixed "0")))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_once_init_leave"))
+                        (expr-list
+                          (ref-to
+                            (p-expr (ident "static_g_define_type_id")))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gsize"))))
+                                (p-expr (ident "g_define_type_id"))))))))))))
+        (return
+          (p-expr (ident "static_g_define_type_id"))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__noinline__"))
+      (stor-spec (static))
+      (type-spec (typename "GType")))
+    (ftn-declr
+      (ident "my_rect_get_type_once")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (void)))
+          (param-declr))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "GType")))
+              (init-declr-list
+                (init-declr
+                  (ident "g_define_type_id")
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "g_type_register_static_simple"))
+                      (expr-list
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GType"))))
+                              (lshift
+                                (p-expr (fixed "20"))
+                                (p-expr (fixed "2"))))
+                        (fctn-call
+                          (p-expr (ident "g_intern_static_string"))
+                          (expr-list (p-expr (string "MyRect"))))
+                        (sizeof-type
+                          (type-name
+                            (decl-spec-list
+                              (type-spec (typename "MyRectClass")))))
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GClassInitFunc"))))
+                              (cast (type-name
+                                      (decl-spec-list (type-spec (void)))
+                                      (ftn-declr
+                                        (abs-ptr-declr (pointer))
+                                        (param-list
+                                          (param-decl
+                                            (decl-spec-list (type-spec (void)))
+                                            (param-declr)))))
+                                    (p-expr
+                                      (ident "my_rect_class_intern_init"))))
+                        (sizeof-type
+                          (type-name
+                            (decl-spec-list (type-spec (typename "MyRect")))))
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GInstanceInitFunc"))))
+                              (cast (type-name
+                                      (decl-spec-list (type-spec (void)))
+                                      (ftn-declr
+                                        (abs-ptr-declr (pointer))
+                                        (param-list
+                                          (param-decl
+                                            (decl-spec-list (type-spec (void)))
+                                            (param-declr)))))
+                                    (p-expr (ident "my_rect_init"))))
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GTypeFlags"))))
+                              (p-expr (fixed "0")))))))))
+        (compd-stmt
+          (block-item-list
+            (compd-stmt
+              (block-item-list
+                (compd-stmt
+                  (block-item-list
+                    (expr-stmt
+                      (assn-expr
+                        (p-expr (ident "MyRect_private_offset"))
+                        (op "=")
+                        (fctn-call
+                          (p-expr (ident "g_type_add_instance_private"))
+                          (expr-list
+                            (p-expr (ident "g_define_type_id"))
+                            (sizeof-type
+                              (type-name
+                                (decl-spec-list
+                                  (type-spec
+                                    (typename "MyRectPrivate")))))))))))
+                (compd-stmt
+                  (block-item-list
+                    (decl (decl-spec-list
+                            (type-qual (const))
+                            (type-spec (typename "GInterfaceInfo")))
+                          (init-declr-list
+                            (init-declr
+                              (ident "g_implement_interface_info")
+                              (initzer
+                                (initzer-list
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec
+                                                (typename
+                                                  "GInterfaceInitFunc"))))
+                                          (cast (type-name
+                                                  (decl-spec-list
+                                                    (type-spec (void)))
+                                                  (ftn-declr
+                                                    (abs-ptr-declr (pointer))
+                                                    (param-list
+                                                      (param-decl
+                                                        (decl-spec-list
+                                                          (type-spec (void)))
+                                                        (param-declr)))))
+                                                (p-expr
+                                                  (ident "my_rect_print_init")))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0"))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0")))))))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_type_add_interface_static"))
+                        (expr-list
+                          (p-expr (ident "g_define_type_id"))
+                          (fctn-call
+                            (p-expr (ident "my_print_get_type"))
+                            (expr-list))
+                          (ref-to
+                            (p-expr (ident "g_implement_interface_info"))))))))
+                (compd-stmt
+                  (block-item-list
+                    (decl (decl-spec-list
+                            (type-qual (const))
+                            (type-spec (typename "GInterfaceInfo")))
+                          (init-declr-list
+                            (init-declr
+                              (ident "g_implement_interface_info")
+                              (initzer
+                                (initzer-list
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec
+                                                (typename
+                                                  "GInterfaceInitFunc"))))
+                                          (cast (type-name
+                                                  (decl-spec-list
+                                                    (type-spec (void)))
+                                                  (ftn-declr
+                                                    (abs-ptr-declr (pointer))
+                                                    (param-list
+                                                      (param-decl
+                                                        (decl-spec-list
+                                                          (type-spec (void)))
+                                                        (param-declr)))))
+                                                (p-expr
+                                                  (ident "my_rect_serial_init")))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0"))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0")))))))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_type_add_interface_static"))
+                        (expr-list
+                          (p-expr (ident "g_define_type_id"))
+                          (fctn-call
+                            (p-expr (ident "my_serial_get_type"))
+                            (expr-list))
+                          (ref-to
+                            (p-expr (ident "g_implement_interface_info"))))))))
+                (expr-stmt)))))
+        (return (p-expr (ident "g_define_type_id"))))))
+  (decl (@ (extension "GNUC")))
+  (decl (decl-spec-list
+          (type-spec
+            (enum-def
+              (enum-def-list
+                (enum-defn (ident "P_NONE_"))
+                (enum-defn (ident "P_WIDTH"))
+                (enum-defn (ident "P_HEIGHT"))
+                (enum-defn (ident "NUM__PROP")))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "GParamSpec")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ary-declr
+                (ident "obj_properties")
+                (p-expr (ident "NUM__PROP"))))
+            (initzer
+              (initzer-list
+                (initzer
+                  (cast (type-name
+                          (decl-spec-list (type-spec (void)))
+                          (abs-ptr-declr (pointer)))
+                        (p-expr (fixed "0")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_set_property")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (typename "GObject")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "object"))))
+                (param-decl
+                  (decl-spec-list (type-spec (typename "guint")))
+                  (param-declr (ident "property_id")))
+                (param-decl
+                  (decl-spec-list
+                    (type-qual (const))
+                    (type-spec (typename "GValue")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "value"))))
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "GParamSpec")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "pspec")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_get_property")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (typename "GObject")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "object"))))
+                (param-decl
+                  (decl-spec-list (type-spec (typename "guint")))
+                  (param-declr (ident "property_id")))
+                (param-decl
+                  (decl-spec-list (type-spec (typename "GValue")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "value"))))
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "GParamSpec")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "pspec")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_dispose")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (typename "GObject")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "gobject")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rect_finalize")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (typename "GObject")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "gobject")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_class_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyRectClass")))
+          (param-declr
+            (ptr-declr (pointer) (ident "klass"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "GObjectClass")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "object_class"))
+                  (initzer
+                    (cast (type-name
+                            (decl-spec-list
+                              (type-spec (typename "GObjectClass")))
+                            (abs-ptr-declr (pointer)))
+                          (cast (type-name
+                                  (decl-spec-list (type-spec (void)))
+                                  (abs-ptr-declr (pointer)))
+                                (fctn-call
+                                  (p-expr (ident "g_type_check_class_cast"))
+                                  (expr-list
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec
+                                                (typename "GTypeClass")))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (ident "klass")))
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec (typename "GType"))))
+                                          (lshift
+                                            (p-expr (fixed "20"))
+                                            (p-expr (fixed "2"))))))))))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "dispose")
+                   (p-expr (ident "object_class")))
+            (op "=")
+            (p-expr (ident "my_rect_dispose"))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "finalize")
+                   (p-expr (ident "object_class")))
+            (op "=")
+            (p-expr (ident "my_rect_finalize"))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "set_property")
+                   (p-expr (ident "object_class")))
+            (op "=")
+            (p-expr (ident "my_rect_set_property"))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "get_property")
+                   (p-expr (ident "object_class")))
+            (op "=")
+            (p-expr (ident "my_rect_get_property"))))
+        (expr-stmt
+          (assn-expr
+            (array-ref
+              (p-expr (ident "P_WIDTH"))
+              (p-expr (ident "obj_properties")))
+            (op "=")
+            (fctn-call
+              (p-expr (ident "g_param_spec_int"))
+              (expr-list
+                (p-expr (string "width"))
+                (p-expr (string "Width"))
+                (p-expr (string "width of rect"))
+                (p-expr (fixed "50"))
+                (p-expr (fixed "5000"))
+                (p-expr (fixed "500"))
+                (p-expr (ident "G_PARAM_READWRITE"))))))
+        (expr-stmt
+          (assn-expr
+            (array-ref
+              (p-expr (ident "P_HEIGHT"))
+              (p-expr (ident "obj_properties")))
+            (op "=")
+            (fctn-call
+              (p-expr (ident "g_param_spec_int"))
+              (expr-list
+                (p-expr (string "height"))
+                (p-expr (string "Height"))
+                (p-expr (string "height of rect."))
+                (p-expr (fixed "30"))
+                (p-expr (fixed "3000"))
+                (p-expr (fixed "300"))
+                (p-expr (ident "G_PARAM_READWRITE"))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr
+              (ident "g_object_class_install_properties"))
+            (expr-list
+              (p-expr (ident "object_class"))
+              (p-expr (ident "NUM__PROP"))
+              (p-expr (ident "obj_properties"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_init")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyRect")))
+          (param-declr
+            (ptr-declr (pointer) (ident "self"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rect_get_instance_private"))
+                      (expr-list (p-expr (ident "self"))))))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "name") (p-expr (ident "priv")))
+            (op "=")
+            (p-expr (fixed "0")))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_dispose")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "gobject"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rect_get_instance_private"))
+                      (expr-list
+                        (fctn-call
+                          (p-expr (ident "MY_RECT"))
+                          (expr-list (p-expr (ident "gobject"))))))))))
+        (do-while
+          (compd-stmt
+            (block-item-list
+              (expr-stmt
+                (fctn-call
+                  (p-expr (ident "_Static_assert"))
+                  (expr-list
+                    (eq (sizeof-expr
+                          (de-ref
+                            (ref-to
+                              (i-sel (ident "name") (p-expr (ident "priv"))))))
+                        (sizeof-type
+                          (type-name
+                            (decl-spec-list
+                              (type-spec (typename "gpointer"))))))
+                    (p-expr (string "Expression evaluates to false")))))
+              (decl (decl-spec-list
+                      (typeof-expr
+                        (ref-to
+                          (i-sel (ident "name") (p-expr (ident "priv"))))))
+                    (init-declr-list
+                      (init-declr
+                        (ident "_pp")
+                        (initzer
+                          (ref-to
+                            (i-sel (ident "name") (p-expr (ident "priv"))))))))
+              (decl (decl-spec-list
+                      (typeof-expr
+                        (de-ref
+                          (ref-to
+                            (i-sel (ident "name") (p-expr (ident "priv")))))))
+                    (init-declr-list
+                      (init-declr
+                        (ident "_ptr")
+                        (initzer (de-ref (p-expr (ident "_pp")))))))
+              (expr-stmt
+                (assn-expr
+                  (de-ref (p-expr (ident "_pp")))
+                  (op "=")
+                  (cast (type-name
+                          (decl-spec-list (type-spec (void)))
+                          (abs-ptr-declr (pointer)))
+                        (p-expr (fixed "0")))))
+              (if (p-expr (ident "_ptr"))
+                (expr-stmt
+                  (fctn-call
+                    (p-expr (ident "g_object_unref"))
+                    (expr-list (p-expr (ident "_ptr"))))))))
+          (p-expr (fixed "0")))
+        (expr-stmt
+          (fctn-call
+            (i-sel (ident "dispose")
+                   (cast (type-name
+                           (decl-spec-list
+                             (type-spec (typename "GObjectClass")))
+                           (abs-ptr-declr (pointer)))
+                         (cast (type-name
+                                 (decl-spec-list (type-spec (void)))
+                                 (abs-ptr-declr (pointer)))
+                               (fctn-call
+                                 (p-expr (ident "g_type_check_class_cast"))
+                                 (expr-list
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec
+                                               (typename "GTypeClass")))
+                                           (abs-ptr-declr (pointer)))
+                                         (p-expr
+                                           (ident "my_rect_parent_class")))
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec (typename "GType"))))
+                                         (lshift
+                                           (p-expr (fixed "20"))
+                                           (p-expr (fixed "2")))))))))
+            (expr-list (p-expr (ident "gobject"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_finalize")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "gobject"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rect_get_instance_private"))
+                      (expr-list
+                        (fctn-call
+                          (p-expr (ident "MY_RECT"))
+                          (expr-list (p-expr (ident "gobject"))))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "g_free"))
+            (expr-list
+              (i-sel (ident "name") (p-expr (ident "priv"))))))
+        (expr-stmt
+          (fctn-call
+            (i-sel (ident "finalize")
+                   (cast (type-name
+                           (decl-spec-list
+                             (type-spec (typename "GObjectClass")))
+                           (abs-ptr-declr (pointer)))
+                         (cast (type-name
+                                 (decl-spec-list (type-spec (void)))
+                                 (abs-ptr-declr (pointer)))
+                               (fctn-call
+                                 (p-expr (ident "g_type_check_class_cast"))
+                                 (expr-list
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec
+                                               (typename "GTypeClass")))
+                                           (abs-ptr-declr (pointer)))
+                                         (p-expr
+                                           (ident "my_rect_parent_class")))
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec (typename "GType"))))
+                                         (lshift
+                                           (p-expr (fixed "20"))
+                                           (p-expr (fixed "2")))))))))
+            (expr-list (p-expr (ident "gobject"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_set_property")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "object"))))
+        (param-decl
+          (decl-spec-list (type-spec (typename "guint")))
+          (param-declr (ident "property_id")))
+        (param-decl
+          (decl-spec-list
+            (type-qual (const))
+            (type-spec (typename "GValue")))
+          (param-declr
+            (ptr-declr (pointer) (ident "value"))))
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "GParamSpec")))
+          (param-declr
+            (ptr-declr (pointer) (ident "pspec"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RECT"))
+                      (expr-list (p-expr (ident "object"))))))))
+        (decl (decl-spec-list
+                (type-spec (typename "MyRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rect_get_instance_private"))
+                      (expr-list (p-expr (ident "self"))))))))
+        (switch
+          (p-expr (ident "property_id"))
+          (compd-stmt
+            (block-item-list
+              (case (p-expr (ident "P_WIDTH"))
+                (expr-stmt
+                 (assn-expr
+                   (i-sel (ident "width") (p-expr (ident "priv")))
+                   (op "=")
+                   (fctn-call
+                     (p-expr (ident "g_value_get_int"))
+                     (expr-list (p-expr (ident "value")))))))
+              (break)
+              (case (p-expr (ident "P_HEIGHT"))
+                (expr-stmt
+                 (assn-expr
+                   (i-sel (ident "height") (p-expr (ident "priv")))
+                   (op "=")
+                   (fctn-call
+                     (p-expr (ident "g_value_get_int"))
+                     (expr-list (p-expr (ident "value")))))))
+              (break)
+              (default
+                (do-while
+                  (compd-stmt
+                    (block-item-list
+                      (decl (decl-spec-list (type-spec (typename "GObject")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__object"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec (typename "GObject")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "object")))))))
+                      (decl (decl-spec-list
+                              (type-spec (typename "GParamSpec")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__pspec"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec
+                                              (typename "GParamSpec")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "pspec")))))))
+                      (decl (decl-spec-list (type-spec (typename "guint")))
+                            (init-declr-list
+                              (init-declr
+                                (ident "_glib__property_id")
+                                (initzer (p-expr (ident "property_id"))))))
+                      (expr-stmt
+                        (fctn-call
+                          (p-expr (ident "g_log"))
+                          (expr-list
+                            (cast (type-name
+                                    (decl-spec-list
+                                      (type-spec (typename "gchar")))
+                                    (abs-ptr-declr (pointer)))
+                                  (p-expr (fixed "0")))
+                            (p-expr (ident "G_LOG_LEVEL_WARNING"))
+                            (p-expr
+                              (string
+                                "%s:%d: invalid %s id %u for \"%s\" of type '%s' in '%s'"))
+                            (p-expr (ident "unknown"))
+                            (p-expr (fixed "0"))
+                            (p-expr (string "property"))
+                            (p-expr (ident "_glib__property_id"))
+                            (i-sel (ident "name")
+                                   (p-expr (ident "_glib__pspec")))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__pspec"))))))))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__object")))))))))))))
+                  (p-expr (fixed "0"))))
+              (break)))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_get_property")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "object"))))
+        (param-decl
+          (decl-spec-list (type-spec (typename "guint")))
+          (param-declr (ident "property_id")))
+        (param-decl
+          (decl-spec-list (type-spec (typename "GValue")))
+          (param-declr
+            (ptr-declr (pointer) (ident "value"))))
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "GParamSpec")))
+          (param-declr
+            (ptr-declr (pointer) (ident "pspec"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RECT"))
+                      (expr-list (p-expr (ident "object"))))))))
+        (decl (decl-spec-list
+                (type-spec (typename "MyRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rect_get_instance_private"))
+                      (expr-list (p-expr (ident "self"))))))))
+        (switch
+          (p-expr (ident "property_id"))
+          (compd-stmt
+            (block-item-list
+              (case (p-expr (ident "P_WIDTH"))
+                (expr-stmt
+                 (fctn-call
+                   (p-expr (ident "g_value_set_uint"))
+                   (expr-list
+                     (p-expr (ident "value"))
+                     (i-sel (ident "width") (p-expr (ident "priv")))))))
+              (break)
+              (case (p-expr (ident "P_HEIGHT"))
+                (expr-stmt
+                 (fctn-call
+                   (p-expr (ident "g_value_set_uint"))
+                   (expr-list
+                     (p-expr (ident "value"))
+                     (i-sel (ident "height") (p-expr (ident "priv")))))))
+              (break)
+              (default
+                (do-while
+                  (compd-stmt
+                    (block-item-list
+                      (decl (decl-spec-list (type-spec (typename "GObject")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__object"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec (typename "GObject")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "object")))))))
+                      (decl (decl-spec-list
+                              (type-spec (typename "GParamSpec")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__pspec"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec
+                                              (typename "GParamSpec")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "pspec")))))))
+                      (decl (decl-spec-list (type-spec (typename "guint")))
+                            (init-declr-list
+                              (init-declr
+                                (ident "_glib__property_id")
+                                (initzer (p-expr (ident "property_id"))))))
+                      (expr-stmt
+                        (fctn-call
+                          (p-expr (ident "g_log"))
+                          (expr-list
+                            (cast (type-name
+                                    (decl-spec-list
+                                      (type-spec (typename "gchar")))
+                                    (abs-ptr-declr (pointer)))
+                                  (p-expr (fixed "0")))
+                            (p-expr (ident "G_LOG_LEVEL_WARNING"))
+                            (p-expr
+                              (string
+                                "%s:%d: invalid %s id %u for \"%s\" of type '%s' in '%s'"))
+                            (p-expr (ident "unknown"))
+                            (p-expr (fixed "0"))
+                            (p-expr (string "property"))
+                            (p-expr (ident "_glib__property_id"))
+                            (i-sel (ident "name")
+                                   (p-expr (ident "_glib__pspec")))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__pspec"))))))))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__object")))))))))))))
+                  (p-expr (fixed "0"))))
+              (break)))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_print_fprint")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyPrint")))
+          (param-declr
+            (ptr-declr (pointer) (ident "print"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "char")))
+          (param-declr
+            (ptr-declr (pointer) (ident "name"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "rect"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RECT"))
+                      (expr-list (p-expr (ident "print"))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "rect_fprint(%s)\n"))
+              (p-expr (ident "name"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_print_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyPrintInterface")))
+          (param-declr
+            (ptr-declr (pointer) (ident "iface"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "fprint") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "my_rect_print_fprint")))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_serial_load")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MySerial")))
+          (param-declr
+            (ptr-declr (pointer) (ident "serial"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "int")))
+          (param-declr (ident "id")))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RECT"))
+                      (expr-list (p-expr (ident "serial"))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "rect_load %d\n"))
+              (p-expr (ident "id"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_serial_save")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MySerial")))
+          (param-declr
+            (ptr-declr (pointer) (ident "serial"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "int")))
+          (param-declr (ident "id")))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RECT"))
+                      (expr-list (p-expr (ident "serial"))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "rect_save %d\n"))
+              (p-expr (ident "id"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rect_serial_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MySerialInterface")))
+          (param-declr
+            (ptr-declr (pointer) (ident "iface"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "load") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "my_rect_serial_load"))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "save") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "my_rect_serial_save")))))))
+  (decl (decl-spec-list (type-spec (typename "GType")))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rrect_get_type")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (void)))
+                  (param-declr)))))))
+  (pragma "GCC diagnostic push")
+  (pragma
+    "GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (struct-ref (ident "_MyRRect"))))
+        (init-declr-list (init-declr (ident "MyRRect"))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (struct-ref (ident "_MyRRectClass"))))
+        (init-declr-list
+          (init-declr (ident "MyRRectClass"))))
+  (decl (decl-spec-list
+          (type-spec
+            (struct-def
+              (ident "_MyRRect")
+              (field-list
+                (comp-decl
+                  (decl-spec-list (type-spec (typename "MyRect")))
+                  (comp-declr-list
+                    (comp-declr (ident "parent_instance")))))))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "MyRRect")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr (pointer) (ident "MyRRect_autoptr")))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "GList")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRect_listautoptr")))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "GSList")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRect_slistautoptr")))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "GQueue")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRect_queueautoptr")))))
+  (pragma "GCC diagnostic push")
+  (pragma
+    "GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_autoptr_clear_MyRRect")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyRRect")))
+          (param-declr
+            (ptr-declr (pointer) (ident "_ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (if (p-expr (ident "_ptr"))
+          (expr-stmt
+            (fctn-call
+              (p-expr (ident "glib_autoptr_clear_MyRect"))
+              (expr-list
+                (cast (type-name
+                        (decl-spec-list (type-spec (typename "MyRect")))
+                        (abs-ptr-declr (pointer)))
+                      (p-expr (ident "_ptr"))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_autoptr_cleanup_MyRRect")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyRRect")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "glib_autoptr_clear_MyRRect"))
+            (expr-list (de-ref (p-expr (ident "_ptr")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_listautoptr_cleanup_MyRRect")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GList")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_l"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "g_list_free_full"))
+            (expr-list
+              (de-ref (p-expr (ident "_l")))
+              (cast (type-name
+                      (decl-spec-list
+                        (type-spec (typename "GDestroyNotify"))))
+                    (cast (type-name
+                            (decl-spec-list (type-spec (void)))
+                            (ftn-declr
+                              (abs-ptr-declr (pointer))
+                              (param-list
+                                (param-decl
+                                  (decl-spec-list (type-spec (void)))
+                                  (param-declr)))))
+                          (p-expr (ident "glib_autoptr_clear_MyRect"))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_slistautoptr_cleanup_MyRRect")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GSList")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_l"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "g_slist_free_full"))
+            (expr-list
+              (de-ref (p-expr (ident "_l")))
+              (cast (type-name
+                      (decl-spec-list
+                        (type-spec (typename "GDestroyNotify"))))
+                    (cast (type-name
+                            (decl-spec-list (type-spec (void)))
+                            (ftn-declr
+                              (abs-ptr-declr (pointer))
+                              (param-list
+                                (param-decl
+                                  (decl-spec-list (type-spec (void)))
+                                  (param-declr)))))
+                          (p-expr (ident "glib_autoptr_clear_MyRect"))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_queueautoptr_cleanup_MyRRect")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GQueue")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_q"))))))
+    (compd-stmt
+      (block-item-list
+        (if (de-ref (p-expr (ident "_q")))
+          (expr-stmt
+            (fctn-call
+              (p-expr (ident "g_queue_free_full"))
+              (expr-list
+                (de-ref (p-expr (ident "_q")))
+                (cast (type-name
+                        (decl-spec-list
+                          (type-spec (typename "GDestroyNotify"))))
+                      (cast (type-name
+                              (decl-spec-list (type-spec (void)))
+                              (ftn-declr
+                                (abs-ptr-declr (pointer))
+                                (param-list
+                                  (param-decl
+                                    (decl-spec-list (type-spec (void)))
+                                    (param-declr)))))
+                            (p-expr
+                              (ident "glib_autoptr_clear_MyRect")))))))))))
+  (pragma "GCC diagnostic pop")
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "MyRRectClass")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRectClass_autoptr")))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "GList")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRectClass_listautoptr")))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "GSList")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRectClass_slistautoptr")))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec (typename "GQueue")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ident "MyRRectClass_queueautoptr")))))
+  (pragma "GCC diagnostic push")
+  (pragma
+    "GCC diagnostic ignored \"-Wdeprecated-declarations\"")
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_autoptr_clear_MyRRectClass")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyRRectClass")))
+          (param-declr
+            (ptr-declr (pointer) (ident "_ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (if (p-expr (ident "_ptr"))
+          (expr-stmt
+            (fctn-call
+              (p-expr (ident "g_type_class_unref"))
+              (expr-list
+                (cast (type-name
+                        (decl-spec-list
+                          (type-spec (typename "MyRRectClass")))
+                        (abs-ptr-declr (pointer)))
+                      (p-expr (ident "_ptr"))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_autoptr_cleanup_MyRRectClass")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyRRectClass")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (p-expr
+              (ident "glib_autoptr_clear_MyRRectClass"))
+            (expr-list (de-ref (p-expr (ident "_ptr")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_listautoptr_cleanup_MyRRectClass")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GList")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_l"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "g_list_free_full"))
+            (expr-list
+              (de-ref (p-expr (ident "_l")))
+              (cast (type-name
+                      (decl-spec-list
+                        (type-spec (typename "GDestroyNotify"))))
+                    (cast (type-name
+                            (decl-spec-list (type-spec (void)))
+                            (ftn-declr
+                              (abs-ptr-declr (pointer))
+                              (param-list
+                                (param-decl
+                                  (decl-spec-list (type-spec (void)))
+                                  (param-declr)))))
+                          (p-expr (ident "g_type_class_unref"))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_slistautoptr_cleanup_MyRRectClass")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GSList")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_l"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "g_slist_free_full"))
+            (expr-list
+              (de-ref (p-expr (ident "_l")))
+              (cast (type-name
+                      (decl-spec-list
+                        (type-spec (typename "GDestroyNotify"))))
+                    (cast (type-name
+                            (decl-spec-list (type-spec (void)))
+                            (ftn-declr
+                              (abs-ptr-declr (pointer))
+                              (param-list
+                                (param-decl
+                                  (decl-spec-list (type-spec (void)))
+                                  (param-declr)))))
+                          (p-expr (ident "g_type_class_unref"))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (void)))
+    (ftn-declr
+      (ident "glib_queueautoptr_cleanup_MyRRectClass")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GQueue")))
+          (param-declr
+            (ptr-declr (pointer (pointer)) (ident "_q"))))))
+    (compd-stmt
+      (block-item-list
+        (if (de-ref (p-expr (ident "_q")))
+          (expr-stmt
+            (fctn-call
+              (p-expr (ident "g_queue_free_full"))
+              (expr-list
+                (de-ref (p-expr (ident "_q")))
+                (cast (type-name
+                        (decl-spec-list
+                          (type-spec (typename "GDestroyNotify"))))
+                      (cast (type-name
+                              (decl-spec-list (type-spec (void)))
+                              (ftn-declr
+                                (abs-ptr-declr (pointer))
+                                (param-list
+                                  (param-decl
+                                    (decl-spec-list (type-spec (void)))
+                                    (param-declr)))))
+                            (p-expr (ident "g_type_class_unref")))))))))))
+  (pragma "GCC diagnostic pop")
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "MyRRect")))
+    (ptr-declr
+      (pointer)
+      (ftn-declr
+        (ident "MY_RRECT")
+        (param-list
+          (param-decl
+            (decl-spec-list
+              (type-spec (typename "gpointer")))
+            (param-declr (ident "ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (cast (type-name
+                  (decl-spec-list (type-spec (typename "MyRRect")))
+                  (abs-ptr-declr (pointer)))
+                (cast (type-name
+                        (decl-spec-list (type-spec (void)))
+                        (abs-ptr-declr (pointer)))
+                      (fctn-call
+                        (p-expr (ident "g_type_check_instance_cast"))
+                        (expr-list
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "GTypeInstance")))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (ident "ptr")))
+                          (fctn-call
+                            (p-expr (ident "my_rrect_get_type"))
+                            (expr-list))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "MyRRectClass")))
+    (ptr-declr
+      (pointer)
+      (ftn-declr
+        (ident "MY_RRECT_CLASS")
+        (param-list
+          (param-decl
+            (decl-spec-list
+              (type-spec (typename "gpointer")))
+            (param-declr (ident "ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (cast (type-name
+                  (decl-spec-list
+                    (type-spec (typename "MyRRectClass")))
+                  (abs-ptr-declr (pointer)))
+                (cast (type-name
+                        (decl-spec-list (type-spec (void)))
+                        (abs-ptr-declr (pointer)))
+                      (fctn-call
+                        (p-expr (ident "g_type_check_class_cast"))
+                        (expr-list
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "GTypeClass")))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (ident "ptr")))
+                          (fctn-call
+                            (p-expr (ident "my_rrect_get_type"))
+                            (expr-list))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "gboolean")))
+    (ftn-declr
+      (ident "MY_IS_RRECT")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "gpointer")))
+          (param-declr (ident "ptr")))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (stmt-expr
+            (@ (extension "GNUC"))
+            (block-item-list
+              (decl (decl-spec-list
+                      (type-spec (typename "GTypeInstance")))
+                    (init-declr-list
+                      (init-declr
+                        (ptr-declr (pointer) (ident "__inst"))
+                        (initzer
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "GTypeInstance")))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (ident "ptr")))))))
+              (decl (decl-spec-list (type-spec (typename "GType")))
+                    (init-declr-list
+                      (init-declr
+                        (ident "__t")
+                        (initzer
+                          (fctn-call
+                            (p-expr (ident "my_rrect_get_type"))
+                            (expr-list))))))
+              (decl (decl-spec-list
+                      (type-spec (typename "gboolean")))
+                    (init-declr-list (init-declr (ident "__r"))))
+              (if (not (p-expr (ident "__inst")))
+                (expr-stmt
+                  (assn-expr
+                    (p-expr (ident "__r"))
+                    (op "=")
+                    (p-expr (fixed "0"))))
+                (if (and (i-sel (ident "g_class")
+                                (p-expr (ident "__inst")))
+                         (eq (i-sel (ident "g_type")
+                                    (i-sel (ident "g_class")
+                                           (p-expr (ident "__inst"))))
+                             (p-expr (ident "__t"))))
+                  (expr-stmt
+                    (assn-expr
+                      (p-expr (ident "__r"))
+                      (op "=")
+                      (not (p-expr (fixed "0")))))
+                  (expr-stmt
+                    (assn-expr
+                      (p-expr (ident "__r"))
+                      (op "=")
+                      (fctn-call
+                        (p-expr (ident "g_type_check_instance_is_a"))
+                        (expr-list
+                          (p-expr (ident "__inst"))
+                          (p-expr (ident "__t"))))))))
+              (expr-stmt (p-expr (ident "__r")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "gboolean")))
+    (ftn-declr
+      (ident "MY_IS_RRECT_CLASS")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "gpointer")))
+          (param-declr (ident "ptr")))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (stmt-expr
+            (@ (extension "GNUC"))
+            (block-item-list
+              (decl (decl-spec-list
+                      (type-spec (typename "GTypeClass")))
+                    (init-declr-list
+                      (init-declr
+                        (ptr-declr (pointer) (ident "__class"))
+                        (initzer
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "GTypeClass")))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (ident "ptr")))))))
+              (decl (decl-spec-list (type-spec (typename "GType")))
+                    (init-declr-list
+                      (init-declr
+                        (ident "__t")
+                        (initzer
+                          (fctn-call
+                            (p-expr (ident "my_rrect_get_type"))
+                            (expr-list))))))
+              (decl (decl-spec-list
+                      (type-spec (typename "gboolean")))
+                    (init-declr-list (init-declr (ident "__r"))))
+              (if (not (p-expr (ident "__class")))
+                (expr-stmt
+                  (assn-expr
+                    (p-expr (ident "__r"))
+                    (op "=")
+                    (p-expr (fixed "0"))))
+                (if (eq (i-sel (ident "g_type")
+                               (p-expr (ident "__class")))
+                        (p-expr (ident "__t")))
+                  (expr-stmt
+                    (assn-expr
+                      (p-expr (ident "__r"))
+                      (op "=")
+                      (not (p-expr (fixed "0")))))
+                  (expr-stmt
+                    (assn-expr
+                      (p-expr (ident "__r"))
+                      (op "=")
+                      (fctn-call
+                        (p-expr (ident "g_type_check_class_is_a"))
+                        (expr-list
+                          (p-expr (ident "__class"))
+                          (p-expr (ident "__t"))))))))
+              (expr-stmt (p-expr (ident "__r")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "MyRRectClass")))
+    (ptr-declr
+      (pointer)
+      (ftn-declr
+        (ident "MY_RRECT_GET_CLASS")
+        (param-list
+          (param-decl
+            (decl-spec-list
+              (type-spec (typename "gpointer")))
+            (param-declr (ident "ptr"))))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (cast (type-name
+                  (decl-spec-list
+                    (type-spec (typename "MyRRectClass")))
+                  (abs-ptr-declr (pointer)))
+                (i-sel (ident "g_class")
+                       (cast (type-name
+                               (decl-spec-list
+                                 (type-spec (typename "GTypeInstance")))
+                               (abs-ptr-declr (pointer)))
+                             (p-expr (ident "ptr")))))))))
+  (pragma "GCC diagnostic pop")
+  (decl (decl-spec-list
+          (type-spec
+            (struct-def
+              (ident "_MyRRectClass")
+              (field-list
+                (comp-decl
+                  (decl-spec-list
+                    (type-spec (typename "MyRectClass")))
+                  (comp-declr-list
+                    (comp-declr (ident "parent_class"))))
+                (comp-decl
+                  (decl-spec-list
+                    (type-spec (typename "gpointer")))
+                  (comp-declr-list
+                    (comp-declr
+                      (ary-declr
+                        (ident "padding")
+                        (p-expr (fixed "12")))))))))))
+  (decl (decl-spec-list (type-spec (typename "MyRRect")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ftn-declr
+                (ident "my_rrect_new")
+                (param-list
+                  (param-decl
+                    (decl-spec-list (type-spec (void)))
+                    (param-declr))))))))
+  (decl (decl-spec-list
+          (stor-spec (typedef))
+          (type-spec
+            (struct-def
+              (field-list
+                (comp-decl
+                  (decl-spec-list (type-spec (fixed-type "int")))
+                  (comp-declr-list (comp-declr (ident "radius"))))))))
+        (init-declr-list
+          (init-declr (ident "MyRRectPrivate"))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "rrect_serial_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MySerialInterface")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "iface")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "rrect_print_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MyPrintInterface")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "iface")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rrect_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (typename "MyRRect")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "self")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (void)))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rrect_class_init")
+              (param-list
+                (param-decl
+                  (decl-spec-list
+                    (type-spec (typename "MyRRectClass")))
+                  (param-declr
+                    (ptr-declr (pointer) (ident "klass")))))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "GType")))
+        (init-declr-list
+          (init-declr
+            (ftn-declr
+              (ident "my_rrect_get_type_once")
+              (param-list
+                (param-decl
+                  (decl-spec-list (type-spec (void)))
+                  (param-declr)))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "gpointer")))
+        (init-declr-list
+          (init-declr
+            (ident "my_rrect_parent_class")
+            (initzer
+              (cast (type-name
+                      (decl-spec-list (type-spec (void)))
+                      (abs-ptr-declr (pointer)))
+                    (p-expr (fixed "0")))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "gint")))
+        (init-declr-list
+          (init-declr (ident "MyRRect_private_offset"))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_class_intern_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "gpointer")))
+          (param-declr (ident "klass")))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (p-expr (ident "my_rrect_parent_class"))
+            (op "=")
+            (fctn-call
+              (p-expr (ident "g_type_class_peek_parent"))
+              (expr-list (p-expr (ident "klass"))))))
+        (if (ne (p-expr (ident "MyRRect_private_offset"))
+                (p-expr (fixed "0")))
+          (expr-stmt
+            (fctn-call
+              (p-expr
+                (ident "g_type_class_adjust_private_offset"))
+              (expr-list
+                (p-expr (ident "klass"))
+                (ref-to
+                  (p-expr (ident "MyRRect_private_offset")))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "my_rrect_class_init"))
+            (expr-list
+              (cast (type-name
+                      (decl-spec-list
+                        (type-spec (typename "MyRRectClass")))
+                      (abs-ptr-declr (pointer)))
+                    (p-expr (ident "klass")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__unused__"))
+      (stor-spec (static))
+      (fctn-spec "inline")
+      (type-spec (typename "gpointer")))
+    (ftn-declr
+      (ident "my_rrect_get_instance_private")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyRRect")))
+          (param-declr
+            (ptr-declr (pointer) (ident "self"))))))
+    (compd-stmt
+      (block-item-list
+        (return
+          (cast (type-name
+                  (decl-spec-list
+                    (type-spec (typename "gpointer"))))
+                (add (cast (type-name
+                             (decl-spec-list (type-spec (typename "guint8")))
+                             (abs-ptr-declr (pointer)))
+                           (p-expr (ident "self")))
+                     (cast (type-name
+                             (decl-spec-list (type-spec (typename "glong"))))
+                           (p-expr (ident "MyRRect_private_offset")))))))))
+  (fctn-defn
+    (decl-spec-list (type-spec (typename "GType")))
+    (ftn-declr
+      (ident "my_rrect_get_type")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (void)))
+          (param-declr))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (stor-spec (static))
+                (type-spec (typename "gsize")))
+              (init-declr-list
+                (init-declr
+                  (ident "static_g_define_type_id")
+                  (initzer (p-expr (fixed "0"))))))
+        (if (stmt-expr
+              (@ (extension "GNUC"))
+              (block-item-list
+                (expr-stmt
+                  (fctn-call
+                    (p-expr (ident "_Static_assert"))
+                    (expr-list
+                      (eq (sizeof-expr
+                            (de-ref
+                              (ref-to
+                                (p-expr (ident "static_g_define_type_id")))))
+                          (sizeof-type
+                            (type-name
+                              (decl-spec-list
+                                (type-spec (typename "gpointer"))))))
+                      (p-expr (string "Expression evaluates to false")))))
+                (expr-stmt
+                  (cast (type-name (decl-spec-list (type-spec (void))))
+                        (cond-expr
+                          (p-expr (fixed "0"))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gpointer"))))
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id")))))
+                          (cast (type-name
+                                  (decl-spec-list (type-spec (void)))
+                                  (abs-ptr-declr (pointer)))
+                                (p-expr (fixed "0"))))))
+                (expr-stmt
+                  (and (not (stmt-expr
+                              (@ (extension "GNUC"))
+                              (block-item-list
+                                (expr-stmt
+                                  (fctn-call
+                                    (p-expr (ident "_Static_assert"))
+                                    (expr-list
+                                      (eq (sizeof-expr
+                                            (de-ref
+                                              (ref-to
+                                                (p-expr
+                                                  (ident "static_g_define_type_id")))))
+                                          (sizeof-type
+                                            (type-name
+                                              (decl-spec-list
+                                                (type-spec
+                                                  (typename "gpointer"))))))
+                                      (p-expr
+                                        (string
+                                          "Expression evaluates to false")))))
+                                (decl (decl-spec-list
+                                        (typeof-expr
+                                          (de-ref
+                                            (ref-to
+                                              (p-expr
+                                                (ident "static_g_define_type_id"))))))
+                                      (init-declr-list
+                                        (init-declr
+                                          (ident "gapg_temp_newval"))))
+                                (decl (decl-spec-list
+                                        (typeof-expr
+                                          (ref-to
+                                            (p-expr
+                                              (ident "static_g_define_type_id")))))
+                                      (init-declr-list
+                                        (init-declr
+                                          (ident "gapg_temp_atomic")
+                                          (initzer
+                                            (ref-to
+                                              (p-expr
+                                                (ident "static_g_define_type_id")))))))
+                                (expr-stmt
+                                  (fctn-call
+                                    (p-expr (ident "__atomic_load"))
+                                    (expr-list
+                                      (p-expr (ident "gapg_temp_atomic"))
+                                      (ref-to
+                                        (p-expr (ident "gapg_temp_newval")))
+                                      (p-expr (fixed "5")))))
+                                (expr-stmt
+                                  (p-expr (ident "gapg_temp_newval"))))))
+                       (fctn-call
+                         (p-expr (ident "g_once_init_enter"))
+                         (expr-list
+                           (ref-to
+                             (p-expr (ident "static_g_define_type_id")))))))))
+          (compd-stmt
+            (block-item-list
+              (decl (decl-spec-list (type-spec (typename "GType")))
+                    (init-declr-list
+                      (init-declr
+                        (ident "g_define_type_id")
+                        (initzer
+                          (fctn-call
+                            (p-expr (ident "my_rrect_get_type_once"))
+                            (expr-list))))))
+              (expr-stmt
+                (stmt-expr
+                  (@ (extension "GNUC"))
+                  (block-item-list
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "_Static_assert"))
+                        (expr-list
+                          (eq (sizeof-expr
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id")))))
+                              (sizeof-type
+                                (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gpointer"))))))
+                          (p-expr (string "Expression evaluates to false")))))
+                    (expr-stmt
+                      (cond-expr
+                        (p-expr (fixed "0"))
+                        (cast (type-name (decl-spec-list (type-spec (void))))
+                              (assn-expr
+                                (de-ref
+                                  (ref-to
+                                    (p-expr
+                                      (ident "static_g_define_type_id"))))
+                                (op "=")
+                                (p-expr (ident "g_define_type_id"))))
+                        (cast (type-name (decl-spec-list (type-spec (void))))
+                              (p-expr (fixed "0")))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_once_init_leave"))
+                        (expr-list
+                          (ref-to
+                            (p-expr (ident "static_g_define_type_id")))
+                          (cast (type-name
+                                  (decl-spec-list
+                                    (type-spec (typename "gsize"))))
+                                (p-expr (ident "g_define_type_id"))))))))))))
+        (return
+          (p-expr (ident "static_g_define_type_id"))))))
+  (fctn-defn
+    (decl-spec-list
+      (@ (attributes "__noinline__"))
+      (stor-spec (static))
+      (type-spec (typename "GType")))
+    (ftn-declr
+      (ident "my_rrect_get_type_once")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (void)))
+          (param-declr))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "GType")))
+              (init-declr-list
+                (init-declr
+                  (ident "g_define_type_id")
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "g_type_register_static_simple"))
+                      (expr-list
+                        (fctn-call
+                          (p-expr (ident "my_rect_get_type"))
+                          (expr-list))
+                        (fctn-call
+                          (p-expr (ident "g_intern_static_string"))
+                          (expr-list (p-expr (string "MyRRect"))))
+                        (sizeof-type
+                          (type-name
+                            (decl-spec-list
+                              (type-spec (typename "MyRRectClass")))))
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GClassInitFunc"))))
+                              (cast (type-name
+                                      (decl-spec-list (type-spec (void)))
+                                      (ftn-declr
+                                        (abs-ptr-declr (pointer))
+                                        (param-list
+                                          (param-decl
+                                            (decl-spec-list (type-spec (void)))
+                                            (param-declr)))))
+                                    (p-expr
+                                      (ident "my_rrect_class_intern_init"))))
+                        (sizeof-type
+                          (type-name
+                            (decl-spec-list (type-spec (typename "MyRRect")))))
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GInstanceInitFunc"))))
+                              (cast (type-name
+                                      (decl-spec-list (type-spec (void)))
+                                      (ftn-declr
+                                        (abs-ptr-declr (pointer))
+                                        (param-list
+                                          (param-decl
+                                            (decl-spec-list (type-spec (void)))
+                                            (param-declr)))))
+                                    (p-expr (ident "my_rrect_init"))))
+                        (cast (type-name
+                                (decl-spec-list
+                                  (type-spec (typename "GTypeFlags"))))
+                              (p-expr (fixed "0")))))))))
+        (compd-stmt
+          (block-item-list
+            (compd-stmt
+              (block-item-list
+                (compd-stmt
+                  (block-item-list
+                    (expr-stmt
+                      (assn-expr
+                        (p-expr (ident "MyRRect_private_offset"))
+                        (op "=")
+                        (fctn-call
+                          (p-expr (ident "g_type_add_instance_private"))
+                          (expr-list
+                            (p-expr (ident "g_define_type_id"))
+                            (sizeof-type
+                              (type-name
+                                (decl-spec-list
+                                  (type-spec
+                                    (typename "MyRRectPrivate")))))))))))
+                (compd-stmt
+                  (block-item-list
+                    (decl (decl-spec-list
+                            (type-qual (const))
+                            (type-spec (typename "GInterfaceInfo")))
+                          (init-declr-list
+                            (init-declr
+                              (ident "g_implement_interface_info")
+                              (initzer
+                                (initzer-list
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec
+                                                (typename
+                                                  "GInterfaceInitFunc"))))
+                                          (cast (type-name
+                                                  (decl-spec-list
+                                                    (type-spec (void)))
+                                                  (ftn-declr
+                                                    (abs-ptr-declr (pointer))
+                                                    (param-list
+                                                      (param-decl
+                                                        (decl-spec-list
+                                                          (type-spec (void)))
+                                                        (param-declr)))))
+                                                (p-expr
+                                                  (ident "rrect_print_init")))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0"))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0")))))))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_type_add_interface_static"))
+                        (expr-list
+                          (p-expr (ident "g_define_type_id"))
+                          (fctn-call
+                            (p-expr (ident "my_print_get_type"))
+                            (expr-list))
+                          (ref-to
+                            (p-expr (ident "g_implement_interface_info"))))))))
+                (compd-stmt
+                  (block-item-list
+                    (decl (decl-spec-list
+                            (type-qual (const))
+                            (type-spec (typename "GInterfaceInfo")))
+                          (init-declr-list
+                            (init-declr
+                              (ident "g_implement_interface_info")
+                              (initzer
+                                (initzer-list
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec
+                                                (typename
+                                                  "GInterfaceInitFunc"))))
+                                          (cast (type-name
+                                                  (decl-spec-list
+                                                    (type-spec (void)))
+                                                  (ftn-declr
+                                                    (abs-ptr-declr (pointer))
+                                                    (param-list
+                                                      (param-decl
+                                                        (decl-spec-list
+                                                          (type-spec (void)))
+                                                        (param-declr)))))
+                                                (p-expr
+                                                  (ident "rrect_serial_init")))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0"))))
+                                  (initzer
+                                    (cast (type-name
+                                            (decl-spec-list (type-spec (void)))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (fixed "0")))))))))
+                    (expr-stmt
+                      (fctn-call
+                        (p-expr (ident "g_type_add_interface_static"))
+                        (expr-list
+                          (p-expr (ident "g_define_type_id"))
+                          (fctn-call
+                            (p-expr (ident "my_serial_get_type"))
+                            (expr-list))
+                          (ref-to
+                            (p-expr (ident "g_implement_interface_info"))))))))
+                (expr-stmt)))))
+        (return (p-expr (ident "g_define_type_id"))))))
+  (decl (@ (extension "GNUC")))
+  (decl (decl-spec-list
+          (type-spec
+            (enum-def
+              (enum-def-list
+                (enum-defn (ident "P_NONE_"))
+                (enum-defn (ident "P_RADIUS"))
+                (enum-defn (ident "NUM__PROP")))))))
+  (decl (decl-spec-list
+          (stor-spec (static))
+          (type-spec (typename "GParamSpec")))
+        (init-declr-list
+          (init-declr
+            (ptr-declr
+              (pointer)
+              (ary-declr
+                (ident "obj_properties")
+                (p-expr (ident "NUM__PROP"))))
+            (initzer
+              (initzer-list
+                (initzer
+                  (cast (type-name
+                          (decl-spec-list (type-spec (void)))
+                          (abs-ptr-declr (pointer)))
+                        (p-expr (fixed "0")))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_init")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyRRect")))
+          (param-declr
+            (ptr-declr (pointer) (ident "self"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyRRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rrect_get_instance_private"))
+                      (expr-list (p-expr (ident "self")))))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_dispose")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "gobject"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyRRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rrect_get_instance_private"))
+                      (expr-list
+                        (fctn-call
+                          (p-expr (ident "MY_RRECT"))
+                          (expr-list (p-expr (ident "gobject"))))))))))
+        (expr-stmt
+          (fctn-call
+            (i-sel (ident "dispose")
+                   (cast (type-name
+                           (decl-spec-list
+                             (type-spec (typename "GObjectClass")))
+                           (abs-ptr-declr (pointer)))
+                         (cast (type-name
+                                 (decl-spec-list (type-spec (void)))
+                                 (abs-ptr-declr (pointer)))
+                               (fctn-call
+                                 (p-expr (ident "g_type_check_class_cast"))
+                                 (expr-list
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec
+                                               (typename "GTypeClass")))
+                                           (abs-ptr-declr (pointer)))
+                                         (p-expr
+                                           (ident "my_rrect_parent_class")))
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec (typename "GType"))))
+                                         (lshift
+                                           (p-expr (fixed "20"))
+                                           (p-expr (fixed "2")))))))))
+            (expr-list (p-expr (ident "gobject"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_constructed")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr (ptr-declr (pointer) (ident "obj"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (fctn-call
+            (i-sel (ident "constructed")
+                   (cast (type-name
+                           (decl-spec-list
+                             (type-spec (typename "GObjectClass")))
+                           (abs-ptr-declr (pointer)))
+                         (cast (type-name
+                                 (decl-spec-list (type-spec (void)))
+                                 (abs-ptr-declr (pointer)))
+                               (fctn-call
+                                 (p-expr (ident "g_type_check_class_cast"))
+                                 (expr-list
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec
+                                               (typename "GTypeClass")))
+                                           (abs-ptr-declr (pointer)))
+                                         (p-expr
+                                           (ident "my_rrect_parent_class")))
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec (typename "GType"))))
+                                         (lshift
+                                           (p-expr (fixed "20"))
+                                           (p-expr (fixed "2")))))))))
+            (expr-list (p-expr (ident "obj"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_finalize")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "gobject"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "MyRRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rrect_get_instance_private"))
+                      (expr-list
+                        (fctn-call
+                          (p-expr (ident "MY_RRECT"))
+                          (expr-list (p-expr (ident "gobject"))))))))))
+        (expr-stmt
+          (fctn-call
+            (i-sel (ident "finalize")
+                   (cast (type-name
+                           (decl-spec-list
+                             (type-spec (typename "GObjectClass")))
+                           (abs-ptr-declr (pointer)))
+                         (cast (type-name
+                                 (decl-spec-list (type-spec (void)))
+                                 (abs-ptr-declr (pointer)))
+                               (fctn-call
+                                 (p-expr (ident "g_type_check_class_cast"))
+                                 (expr-list
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec
+                                               (typename "GTypeClass")))
+                                           (abs-ptr-declr (pointer)))
+                                         (p-expr
+                                           (ident "my_rrect_parent_class")))
+                                   (cast (type-name
+                                           (decl-spec-list
+                                             (type-spec (typename "GType"))))
+                                         (lshift
+                                           (p-expr (fixed "20"))
+                                           (p-expr (fixed "2")))))))))
+            (expr-list (p-expr (ident "gobject"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_set_property")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "object"))))
+        (param-decl
+          (decl-spec-list (type-spec (typename "guint")))
+          (param-declr (ident "property_id")))
+        (param-decl
+          (decl-spec-list
+            (type-qual (const))
+            (type-spec (typename "GValue")))
+          (param-declr
+            (ptr-declr (pointer) (ident "value"))))
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "GParamSpec")))
+          (param-declr
+            (ptr-declr (pointer) (ident "pspec"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RRECT"))
+                      (expr-list (p-expr (ident "object"))))))))
+        (decl (decl-spec-list
+                (type-spec (typename "MyRRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rrect_get_instance_private"))
+                      (expr-list (p-expr (ident "self"))))))))
+        (switch
+          (p-expr (ident "property_id"))
+          (compd-stmt
+            (block-item-list
+              (case (p-expr (ident "P_RADIUS"))
+                (expr-stmt
+                 (assn-expr
+                   (i-sel (ident "radius") (p-expr (ident "priv")))
+                   (op "=")
+                   (fctn-call
+                     (p-expr (ident "g_value_get_int"))
+                     (expr-list (p-expr (ident "value")))))))
+              (break)
+              (default
+                (do-while
+                  (compd-stmt
+                    (block-item-list
+                      (decl (decl-spec-list (type-spec (typename "GObject")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__object"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec (typename "GObject")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "object")))))))
+                      (decl (decl-spec-list
+                              (type-spec (typename "GParamSpec")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__pspec"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec
+                                              (typename "GParamSpec")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "pspec")))))))
+                      (decl (decl-spec-list (type-spec (typename "guint")))
+                            (init-declr-list
+                              (init-declr
+                                (ident "_glib__property_id")
+                                (initzer (p-expr (ident "property_id"))))))
+                      (expr-stmt
+                        (fctn-call
+                          (p-expr (ident "g_log"))
+                          (expr-list
+                            (cast (type-name
+                                    (decl-spec-list
+                                      (type-spec (typename "gchar")))
+                                    (abs-ptr-declr (pointer)))
+                                  (p-expr (fixed "0")))
+                            (p-expr (ident "G_LOG_LEVEL_WARNING"))
+                            (p-expr
+                              (string
+                                "%s:%d: invalid %s id %u for \"%s\" of type '%s' in '%s'"))
+                            (p-expr (ident "unknown"))
+                            (p-expr (fixed "0"))
+                            (p-expr (string "property"))
+                            (p-expr (ident "_glib__property_id"))
+                            (i-sel (ident "name")
+                                   (p-expr (ident "_glib__pspec")))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__pspec"))))))))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__object")))))))))))))
+                  (p-expr (fixed "0"))))
+              (break)))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_get_property")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "GObject")))
+          (param-declr
+            (ptr-declr (pointer) (ident "object"))))
+        (param-decl
+          (decl-spec-list (type-spec (typename "guint")))
+          (param-declr (ident "property_id")))
+        (param-decl
+          (decl-spec-list (type-spec (typename "GValue")))
+          (param-declr
+            (ptr-declr (pointer) (ident "value"))))
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "GParamSpec")))
+          (param-declr
+            (ptr-declr (pointer) (ident "pspec"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RRECT"))
+                      (expr-list (p-expr (ident "object"))))))))
+        (decl (decl-spec-list
+                (type-spec (typename "MyRRectPrivate")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "priv"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "my_rrect_get_instance_private"))
+                      (expr-list (p-expr (ident "self"))))))))
+        (switch
+          (p-expr (ident "property_id"))
+          (compd-stmt
+            (block-item-list
+              (case (p-expr (ident "P_RADIUS"))
+                (expr-stmt
+                 (fctn-call
+                   (p-expr (ident "g_value_set_uint"))
+                   (expr-list
+                     (p-expr (ident "value"))
+                     (i-sel (ident "radius") (p-expr (ident "priv")))))))
+              (break)
+              (default
+                (do-while
+                  (compd-stmt
+                    (block-item-list
+                      (decl (decl-spec-list (type-spec (typename "GObject")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__object"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec (typename "GObject")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "object")))))))
+                      (decl (decl-spec-list
+                              (type-spec (typename "GParamSpec")))
+                            (init-declr-list
+                              (init-declr
+                                (ptr-declr (pointer) (ident "_glib__pspec"))
+                                (initzer
+                                  (cast (type-name
+                                          (decl-spec-list
+                                            (type-spec
+                                              (typename "GParamSpec")))
+                                          (abs-ptr-declr (pointer)))
+                                        (p-expr (ident "pspec")))))))
+                      (decl (decl-spec-list (type-spec (typename "guint")))
+                            (init-declr-list
+                              (init-declr
+                                (ident "_glib__property_id")
+                                (initzer (p-expr (ident "property_id"))))))
+                      (expr-stmt
+                        (fctn-call
+                          (p-expr (ident "g_log"))
+                          (expr-list
+                            (cast (type-name
+                                    (decl-spec-list
+                                      (type-spec (typename "gchar")))
+                                    (abs-ptr-declr (pointer)))
+                                  (p-expr (fixed "0")))
+                            (p-expr (ident "G_LOG_LEVEL_WARNING"))
+                            (p-expr
+                              (string
+                                "%s:%d: invalid %s id %u for \"%s\" of type '%s' in '%s'"))
+                            (p-expr (ident "unknown"))
+                            (p-expr (fixed "0"))
+                            (p-expr (string "property"))
+                            (p-expr (ident "_glib__property_id"))
+                            (i-sel (ident "name")
+                                   (p-expr (ident "_glib__pspec")))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__pspec"))))))))
+                            (fctn-call
+                              (p-expr (ident "g_type_name"))
+                              (expr-list
+                                (i-sel (ident "g_type")
+                                       (cast (type-name
+                                               (decl-spec-list
+                                                 (type-spec
+                                                   (typename "GTypeClass")))
+                                               (abs-ptr-declr (pointer)))
+                                             (i-sel (ident "g_class")
+                                                    (cast (type-name
+                                                            (decl-spec-list
+                                                              (type-spec
+                                                                (typename
+                                                                  "GTypeInstance")))
+                                                            (abs-ptr-declr
+                                                              (pointer)))
+                                                          (p-expr
+                                                            (ident "_glib__object")))))))))))))
+                  (p-expr (fixed "0"))))
+              (break)))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_class_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyRRectClass")))
+          (param-declr
+            (ptr-declr (pointer) (ident "klass"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list
+                (type-spec (typename "GObjectClass")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "object_class"))
+                  (initzer
+                    (cast (type-name
+                            (decl-spec-list
+                              (type-spec (typename "GObjectClass")))
+                            (abs-ptr-declr (pointer)))
+                          (cast (type-name
+                                  (decl-spec-list (type-spec (void)))
+                                  (abs-ptr-declr (pointer)))
+                                (fctn-call
+                                  (p-expr (ident "g_type_check_class_cast"))
+                                  (expr-list
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec
+                                                (typename "GTypeClass")))
+                                            (abs-ptr-declr (pointer)))
+                                          (p-expr (ident "klass")))
+                                    (cast (type-name
+                                            (decl-spec-list
+                                              (type-spec (typename "GType"))))
+                                          (lshift
+                                            (p-expr (fixed "20"))
+                                            (p-expr (fixed "2"))))))))))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "set_property")
+                   (p-expr (ident "object_class")))
+            (op "=")
+            (p-expr (ident "my_rrect_set_property"))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "get_property")
+                   (p-expr (ident "object_class")))
+            (op "=")
+            (p-expr (ident "my_rrect_get_property"))))
+        (expr-stmt
+          (assn-expr
+            (array-ref
+              (p-expr (ident "P_RADIUS"))
+              (p-expr (ident "obj_properties")))
+            (op "=")
+            (fctn-call
+              (p-expr (ident "g_param_spec_uint"))
+              (expr-list
+                (p-expr (string "radius"))
+                (p-expr (string "Radius"))
+                (p-expr (string "radius of round"))
+                (p-expr (fixed "0"))
+                (p-expr (fixed "100"))
+                (p-expr (fixed "10"))
+                (p-expr (ident "G_PARAM_READWRITE"))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr
+              (ident "g_object_class_install_properties"))
+            (expr-list
+              (p-expr (ident "object_class"))
+              (p-expr (ident "NUM__PROP"))
+              (p-expr (ident "obj_properties"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "my_rrect_print_fprint")
+      (param-list
+        (param-decl
+          (decl-spec-list (type-spec (typename "MyPrint")))
+          (param-declr
+            (ptr-declr (pointer) (ident "print"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "char")))
+          (param-declr
+            (ptr-declr (pointer) (ident "name"))))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "self"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RRECT"))
+                      (expr-list (p-expr (ident "print"))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "rrect_fprint(\"%s\")\n"))
+              (p-expr (ident "name"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "rrect_print_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MyPrintInterface")))
+          (param-declr
+            (ptr-declr (pointer) (ident "iface"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "fprint") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "my_rrect_print_fprint")))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "rrect_serial_save")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MySerial")))
+          (param-declr
+            (ptr-declr (pointer) (ident "object"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "int")))
+          (param-declr (ident "fd")))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "rrect"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RRECT"))
+                      (expr-list (p-expr (ident "object"))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "rrect_serial_save\n"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "rrect_serial_load")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MySerial")))
+          (param-declr
+            (ptr-declr (pointer) (ident "object"))))
+        (param-decl
+          (decl-spec-list (type-spec (fixed-type "int")))
+          (param-declr (ident "fd")))))
+    (compd-stmt
+      (block-item-list
+        (decl (decl-spec-list (type-spec (typename "MyRRect")))
+              (init-declr-list
+                (init-declr
+                  (ptr-declr (pointer) (ident "rrect"))
+                  (initzer
+                    (fctn-call
+                      (p-expr (ident "MY_RRECT"))
+                      (expr-list (p-expr (ident "object"))))))))
+        (expr-stmt
+          (fctn-call
+            (p-expr (ident "printf"))
+            (expr-list
+              (p-expr (string "rrect_serial_load\n"))))))))
+  (fctn-defn
+    (decl-spec-list
+      (stor-spec (static))
+      (type-spec (void)))
+    (ftn-declr
+      (ident "rrect_serial_init")
+      (param-list
+        (param-decl
+          (decl-spec-list
+            (type-spec (typename "MySerialInterface")))
+          (param-declr
+            (ptr-declr (pointer) (ident "iface"))))))
+    (compd-stmt
+      (block-item-list
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "save") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "rrect_serial_save"))))
+        (expr-stmt
+          (assn-expr
+            (i-sel (ident "load") (p-expr (ident "iface")))
+            (op "=")
+            (p-expr (ident "rrect_serial_load"))))))))

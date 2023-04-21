@@ -1,0 +1,37 @@
+#!/bin/sh
+
+#incs="my-rect.h my-print.h my-serial.h"
+#files="my-print.c my-rect.c my-rrect.h my-rrect.c mydemo.c"
+files="my-print.h my-serial.h my-rect.h my-rrect.h"
+files="$files  my-print.c my-serial.c my-rect.c my-rrect.c mydemo.c"
+
+echo "/* demo.c */" >demo.c
+echo "#include <stdio.h>" >>demo.c
+echo "#include <glib-object.h>" >>demo.c
+for f in $incs; do 
+   echo "#include \"$f\"" >>demo.c
+done
+#echo "int demo;" >> demo.c
+ix=0
+for file in $files; do 
+  ix=`expr $ix + 1`
+  case $file in
+  *.h) 
+    sed \
+	-e '/^#include/d' -e '/^#ifndef/d' -e '/^#define.*_$/d' \
+	-e '/^#endif/d' -e '/^G_.*_DECLS/d' \
+	< $file >> demo.c
+    ;;
+  *.c) 
+    sed \
+	-e '/^#include /d' \
+	-e "s/P_/P${ix}_/g" \
+	-e "s/NUM__PROP/NUM__PROP${ix}/g" \
+	-e "s/obj_properties/obj_properties${ix}/g" \
+	< $file >> demo.c
+    ;;
+  *)
+    echo $file skipped
+    ;;
+  esac
+done
