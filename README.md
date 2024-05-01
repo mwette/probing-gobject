@@ -8,6 +8,8 @@ my C parser to generate a sexp style AST.  Then, I used my C-pretty-printer
 
 If you ever wanted to know what was under all those CPP macros, here it is.
 
+The file `allinone.c` has the entire program in one .c file.
+
 
 ** Introduction
 
